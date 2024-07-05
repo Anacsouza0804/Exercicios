@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora de Pesos de Gados</title>
+  <script>
+    function calcularPesos() {
+      var pesos = [];
+      var peso;
+      
+      do {
+        peso = parseFloat(prompt("Digite o peso do gado (ou 0 para encerrar):"));
+        
+        if (peso !== 0 && !isNaN(peso)) {
+          pesos.push(peso);
+        }
+      } while (peso !== 0);
+
+      if (pesos.length === 0) {
+        alert("Nenhum dado foi inserido.");
+        return;
+      }
+
+      
+      var menorPeso = Math.min(...pesos);
+
+     
+      var maiorPeso = Math.max(...pesos);
+
+      var somaPesos = pesos.reduce((acc, curr) => acc + curr, 0);
+      var mediaPeso = somaPesos / pesos.length;
+
+      document.getElementById('resultado').innerHTML = `
+        Peso do menor gado: ${menorPeso.toFixed(2)} kg <br>
+        Peso do maior gado: ${maiorPeso.toFixed(2)} kg <br>
+        Média do peso dos gados: ${mediaPeso.toFixed(2)} kg
+      `;
+    }
+  </script>
+</head>
+<body>
+  <h2>Calculadora de Pesos de Gados</h2>
+  <button onclick="calcularPesos()">Iniciar Leitura de Pesos</button>
+
+  <div id="resultado"></div>
+</body>
+</html>
